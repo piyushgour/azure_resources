@@ -1,6 +1,6 @@
 variable "vpc_name" {
-    default =  "Test-Network"
-    type = list(string)
+    default =  "Test_Network"
+    type = string
   
 }
 
@@ -12,7 +12,7 @@ variable "subnet_name" {
 
 variable "location" {
   type = string
-  default = "West Europe"
+  default = "westeurope"
 }
 
 variable "resource_group_name" {

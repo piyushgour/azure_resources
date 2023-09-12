@@ -5,7 +5,7 @@ variable "rg_name" {
 
 variable "location" {
     type = string
-    default = "West Europe"
+    default = "westeurope"
   
 }
 variable "reserved" {

@@ -1,22 +1,26 @@
 variable "app_service_plan" {
-    default = ""
+    default = "service_plan"
     type = string
   
 }
 
 variable "location" {
     type = string
-    default = "West Europ"
+    default = "westeurope"
   
 }
 
 variable "rg_name" {
     type = string
-    default = ""
+    default = "test-rg"
   
 }
 
-variable "kind" {
+variable "os_type" {
     type = string
-    default = "linux"
+    default = "Linux"
+    validation {
+        condition     = contains(["Windows", "Linux", "WindowsContainer"], var.os_type)
+        error_message = "The value for os_type must be either `Windows`, `Linux`, `WindowsContainer`."
+    }
 }

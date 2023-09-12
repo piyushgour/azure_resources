@@ -1,0 +1,1 @@
+connectivity_subscription_id = "xxxx-xxxx-xxxx-xxxx"

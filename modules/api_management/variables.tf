@@ -6,13 +6,17 @@ variable "api_management_name" {
 
 variable "location" {
   type = string
-  default = "West Europ"
+  default = "westeurope"
 
 }
 
 variable "api_publisher_email" {
     type = string
     default = "test@test.com"
+    validation {
+        condition     = length(var.api_publisher_email) > 0
+        error_message = "The publisher_email must contain at least one character."
+    }
   
 }
 
@@ -28,22 +32,13 @@ variable "api_publisher_name" {
   
 }
 
-variable "api_vnet_type" {
-    type = string
-    default = "default"
-  
-}
 
 variable "sku_name" {
     type = string
     default = "Developer_1"
 }
 
-variable "apim_subnet_id" {
-    type = list(string)
-    default = []
-  
-}
+
 
 variable "insight_name" {
     type = string
@@ -54,5 +49,11 @@ variable "insight_name" {
 variable "logger_name" {
     type = string
     default = "test-logger"
+  
+}
+
+variable "tags" {
+  type        = map(string)
+  default = null
   
 }

@@ -6,17 +6,13 @@ resource "azurerm_api_management" "apim" {
   publisher_name                      = var.api_publisher_name
   publisher_email                     = var.api_publisher_email
   sku_name                            = var.sku_name
-  virtual_network_type                = var.api_vnet_type
-  #zones                               = [ 1, 2, 3]
-  virtual_network_configuration {
-      subnet_id                       = var.apim_subnet_id
-  }
+  
   timeouts {
     create = "2h10m"
     update = "2h"
     delete = "20m"
   }
-  tags =    var.Tags
+  tags =  var.tags
 }
 
  

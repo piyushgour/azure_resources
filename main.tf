@@ -5,8 +5,7 @@ resource "azurerm_resource_group" "rg" {
 
 module "network" {
     source = "./modules/virtual_network"
-    name     = "my-resources"
-    location = "West Europe"
+    location = var.location
     resource_group_name = azurerm_resource_group.rg.name
   
 }
@@ -14,15 +13,13 @@ module "network" {
 
 module "api_management" {
     source = "./modules/api_management"
-    resource_group_name = azurerm_resource_group.rg.name
-    subnet_id = module.azurerm_subnet.example.subnet_id
+    api_management_name = "My-api"
+    
+    
 }
 
 
 
 module "app_service_plan" {
   source = "./modules/app_service_plan"
-  name = "appserviceplan"
-  reserved = var.reserved
-  resource_group_name = azurerm_resource_group.rg.name
 }
