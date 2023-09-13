@@ -68,7 +68,7 @@ $env:ARM_CLIENT_SECRET="<service_principal_password>"
 ## Usage
  - in Root folder main.tf file to create new resources.
  - variables.tf file contains variables that referred in main.tf file. 
- - all source resource are in modules folder with respective naming convention. 
+ - All resource.tf files containing code are located in the 'modules' folder with the respective naming convention. 
 
  
 
@@ -81,18 +81,21 @@ $env:ARM_CLIENT_SECRET="<service_principal_password>"
 
     module "network" {
         source = "./modules/virtual_network"
-        name     = "my-resources"
-        location = "West Europe"
+        location = var.location
         resource_group_name = azurerm_resource_group.rg.name
-    
+  
     }
     ```
     ### API Management Resource Creation
     ```hcl
     module "api_management" {
         source = "./modules/api_management"
-        resource_group_name = azurerm_resource_group.rg.name
-        subnet_id = module.azurerm_subnet.example.subnet_id
+        api_management_name = "My-api"
+        apim_rg = azurerm_resource_group.rg.name
+        tags = merge(local.tags, {
+        department = "IT"
+        }) 
+
     }
     
     ```
@@ -102,9 +105,8 @@ $env:ARM_CLIENT_SECRET="<service_principal_password>"
     ```hcl
     module "app_service_plan" {
         source = "./modules/app_service_plan"
-        name = "appserviceplan"
-        reserved = var.reserved
-        resource_group_name = azurerm_resource_group.rg.name
+        rg_name = azurerm_resource_group.rg.name
+  
     }
 
     
